@@ -42,16 +42,16 @@ footer{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.0
   </div>
 
   <h2>1. What we collect</h2>
-  <p>Homtory is an offline-first, on-device app. The information you enter, medicines, dose logs, water intake, fasting sessions, weight, BMI, and profile details, is stored in an encrypted database <b>on your device only</b>. It is not transmitted to us or to any third party.</p>
+  <p>Homtory is an offline-first, on-device app. The information you enter (medicines, dose logs, water intake, fasting sessions, weight, BMI, and profile details) is stored in a local database <b>on your device only</b>, protected by your phone's built-in storage encryption while the device is locked and by the app's PIN / biometric lock. It is not transmitted to us or to any third party.</p>
 
   <h2>2. We do not have a server for your data</h2>
   <p>Because your data lives on your phone, we have no copy of it. We cannot read, access, or recover your health records. If you uninstall the app without making a backup, the data is gone.</p>
 
   <h2>3. Optional cloud backup</h2>
-  <p>The app offers an <b>opt-in</b> backup so a lost phone doesn't mean lost data. It only uploads when you explicitly tap “Back up now”. Backups are stored in your own private account space (via Google Firebase) and are not readable by us or by other users. If you never tap backup, nothing is ever uploaded.</p>
+  <p>The app offers an <b>opt-in</b> backup so a lost phone doesn't mean lost data. It uploads only when you explicitly tap “Back up now”. Each backup is stored under your own account ID in Google Firebase (Firestore), and access is enforced by server-side security rules so that only you, while signed in, can read or restore it — no other app user can reach it. Google operates the underlying storage and may process the data to run and protect the service under its own terms. If you never tap backup, nothing is ever uploaded.</p>
 
   <h2>4. Sign-in (optional)</h2>
-  <p>Sign-in (phone OTP, email, or guest) exists only to secure optional cloud backup and is handled by Google Firebase Authentication. Using the core app, reminders, tracking, fasting, does not require an account.</p>
+  <p>Sign-in (phone OTP, email, or guest) exists only to secure optional cloud backup and is handled by <b>Google Firebase Authentication</b>. Using the core app — reminders, tracking, fasting — does not require an account. Google Firebase is our only third-party processor: it handles your sign-in identity and, if you opt in, your backup data, under the <a href="https://firebase.google.com/support/privacy">Firebase Privacy &amp; Security</a> and <a href="https://cloud.google.com/terms/cloud-privacy-notice">Google Cloud Privacy Notice</a>.</p>
 
   <h2>5. Device permissions we use</h2>
   <ul>
@@ -65,10 +65,11 @@ footer{margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.0
   <p>None. Homtory contains <b>no advertising and no third-party analytics or tracking SDKs</b> reading your health activity.</p>
 
   <h2>7. Children</h2>
-  <p>The app may be used by families to track children's medicines, entered by an adult. We do not knowingly collect personal data from children directly, and no such data leaves the device.</p>
+  <p>Homtory is intended for adults. A parent or guardian may use it to track a child's medicines. If you are under 18 (India) or under the digital-consent age in your country, please use the app only with a parent or guardian's involvement. We do not knowingly collect personal data from children directly; anything a family records stays on the device unless an adult chooses to back it up. Parents can remove a child's data anytime via Settings → “Wipe All Local Data” or by contacting us.</p>
 
   <h2>8. Your rights (India's DPDP Act &amp; others)</h2>
-  <p>Since your data stays on your device, you are in full control: you can edit or delete any entry, export your history to CSV at any time, or wipe all local data from Settings → “Wipe All Local Data”. Deleting the app removes the on-device data.</p>
+  <p>Since your data stays on your device, you are in full control: you can edit or correct any entry (rectification), export your history to CSV (data portability), withdraw consent from Settings → “Withdraw Consent”, or erase everything from Settings → “Wipe All Local Data”. Deleting the app also removes the on-device data.</p>
+  <p><b>Retention:</b> Because we hold nothing on our servers, there is no retention period on our side. Your logs stay on your device until you delete them — we suggest exporting and clearing very old logs periodically. An optional cloud backup stays until you overwrite it or delete it.</p>
 
   <h2>9. Medical disclaimer</h2>
   <p>Homtory is a personal wellness and reminder tool. It does not provide medical advice, diagnosis, or treatment. Always follow the guidance of your doctor or pharmacist.</p>
