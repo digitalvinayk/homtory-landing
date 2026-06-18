@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homtory Health — Medicine reminders, water & fasting, 100% private</title>
+<meta name="description" content="Homtory Health keeps your family's medicines on time, water on track, and fasts (Ekadashi & vrat) in rhythm — with reminders that actually ring. 100% on your phone. Nothing leaves your device.">
+
+<!-- Open Graph / social share -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Homtory Health — your family's health, remembered">
+<meta property="og:description" content="Medicine reminders that actually ring, water tracking, and Indian fasting — 100% on your phone. Free. Private. Made in India.">
+<meta property="og:image" content="logo.png">
+<meta name="theme-color" content="#0E7C7B">
+<link rel="icon" type="image/png" href="logo.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+<style>
+:root{
+  --navy:      #07140F;   /* deep teal-black background */
+  --navy-mid:  #0B1F18;   /* section bg */
+  --teal:      #16C2A6;   /* primary accent (bright) */
+  --teal-deep: #0E7C7B;   /* app brand teal */
+  --teal-glow: rgba(22, 194, 166, 0.14);
+  --amber:     #E8941F;   /* fasting accent */
+  --off-white: #F4FBF8;
+  --text-muted:rgba(244, 251, 248, 0.66);
+  --card-bg:   rgba(22, 194, 166, 0.055);
+  --card-border:rgba(22, 194, 166, 0.16);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',system-ui,sans-serif;
+  background:var(--navy);
+  color:var(--off-white);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,.brand-name{font-family:'Sora','Inter',sans-serif;letter-spacing:-0.02em}
+.container{max-width:1180px;margin:0 auto;padding:0 24px}
+a{color:inherit;text-decoration:none}
+.eyebrow{
+  font-size:13px;font-weight:600;letter-spacing:0.22em;text-transform:uppercase;
+  color:var(--teal);
+}
+
+/* ---------- NAV ---------- */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(10px);background:rgba(7,20,15,.55);border-bottom:1px solid rgba(255,255,255,.05)}
+nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px 24px;max-width:1180px;margin:0 auto;
+}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Sora';font-weight:800;font-size:19px}
+.logo-img{width:32px;height:32px;border-radius:9px;display:block;flex-shrink:0}
+.nav-cta{font-size:14px;font-weight:600;padding:9px 18px;border-radius:10px;background:var(--teal);color:#04221c;transition:.25s}
+.nav-cta:hover{filter:brightness(1.08);transform:translateY(-1px)}
+
+/* ---------- BUTTONS ---------- */
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:17px;font-weight:600;
+  padding:16px 28px;border-radius:14px;
+  background:linear-gradient(135deg,var(--teal),var(--teal-deep));
+  color:#04221c;border:none;cursor:pointer;
+  box-shadow:0 10px 30px -8px rgba(22,194,166,.5);
+  transition:transform .25s ease,filter .25s ease,box-shadow .25s ease;
+}
+.btn-primary:hover{transform:translateY(-3px);filter:brightness(1.06);box-shadow:0 18px 40px -10px rgba(22,194,166,.6)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:16px;font-weight:600;padding:16px 24px;border-radius:14px;
+  border:1px solid var(--card-border);color:var(--off-white);transition:.25s;
+}
+.btn-ghost:hover{border-color:var(--teal);background:var(--card-bg)}
+.btn-sub{font-size:13px;color:var(--text-muted);margin-top:14px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden;padding:120px 0 80px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;width:100%}
+.hero h1{font-size:clamp(42px,5.4vw,72px);font-weight:800;line-height:1.04;margin:18px 0 20px}
+.hero h1 .accent{background:linear-gradient(120deg,var(--teal),var(--amber));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .subtitle{font-size:clamp(16px,1.6vw,19px);color:var(--text-muted);max-width:540px;margin-bottom:30px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* depth shapes */
+.hero-shapes-back,.hero-shapes-mid{position:absolute;inset:0;pointer-events:none;z-index:0}
+.shape{position:absolute;border-radius:50%}
+.shape-a{width:520px;height:520px;top:-160px;right:-120px;background:radial-gradient(circle,rgba(22,194,166,.20),transparent 65%);animation:floatA 14s ease-in-out infinite}
+.shape-b{width:360px;height:360px;bottom:-120px;left:-100px;background:radial-gradient(circle,rgba(232,148,31,.14),transparent 65%);animation:floatB 18s ease-in-out infinite}
+.shape-c{width:220px;height:220px;top:30%;left:42%;background:radial-gradient(circle,rgba(14,124,123,.18),transparent 60%);animation:floatC 12s ease-in-out infinite}
+.hero-grid,.hero .container{position:relative;z-index:2}
+@keyframes floatA{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(-26px,30px) rotate(8deg)}}
+@keyframes floatB{0%,100%{transform:translate(0,0) rotate(0)}50%{transform:translate(24px,-28px) rotate(-6deg)}}
+@keyframes floatC{0%,100%{transform:translate(0,0)}50%{transform:translate(18px,22px)}}
+
+/* phone mockup */
+.phone{position:relative;width:280px;height:570px;margin:0 auto;border-radius:40px;
+  background:linear-gradient(160deg,#0f2a22,#06140f);
+  border:1px solid rgba(22,194,166,.25);
+  box-shadow:0 40px 80px -20px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);
+  padding:14px;}
+.phone:before{content:"";position:absolute;top:14px;left:50%;transform:translateX(-50%);width:120px;height:22px;background:#06140f;border-radius:0 0 16px 16px;z-index:3}
+.screen{width:100%;height:100%;border-radius:28px;background:linear-gradient(180deg,#0a1f19,#07140f);overflow:hidden;position:relative;padding:28px 16px 16px}
+.screen-hero{background:linear-gradient(135deg,var(--teal-deep),var(--teal));border-radius:18px;padding:16px;color:#042;margin-bottom:12px}
+.screen-hero .t{font-size:11px;font-weight:700;opacity:.85;color:#053b34}
+.screen-hero .big{font-family:'Sora';font-weight:800;font-size:26px;color:#fff;margin-top:2px}
+.screen-hero .sm{font-size:11px;color:rgba(255,255,255,.85)}
+.row{display:flex;align-items:center;gap:10px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:10px;margin-bottom:9px}
+.dot{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px}
+.row .meta{flex:1}
+.row .meta b{font-size:12px;color:var(--off-white);display:block;font-family:'Inter';font-weight:700}
+.row .meta span{font-size:10px;color:var(--text-muted)}
+.pill{font-size:9px;font-weight:700;padding:4px 8px;border-radius:8px;background:rgba(22,194,166,.18);color:var(--teal)}
+
+/* trust strip */
+.trust{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px}
+.trust div{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--text-muted)}
+.trust svg{width:16px;height:16px;color:var(--teal);flex-shrink:0}
+
+/* scroll indicator */
+.scroll-down{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:3;color:var(--text-muted);display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;letter-spacing:.15em;text-transform:uppercase}
+.scroll-down svg{width:22px;height:22px;animation:bounce 2s ease-in-out infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(8px)}}
+
+/* ---------- SECTION SHELL ---------- */
+section{padding:110px 0}
+.sec-head{text-align:center;max-width:680px;margin:0 auto 60px}
+.sec-head h2{font-size:clamp(32px,4vw,54px);font-weight:800;margin:14px 0 14px;line-height:1.08}
+.sec-head p{color:var(--text-muted);font-size:17px}
+
+/* ---------- FEATURES ---------- */
+.features{background:var(--navy-mid)}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.feature-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:18px;padding:30px 26px;transition:transform .3s ease,border-color .3s ease,background .3s ease}
+.feature-card:hover{transform:translateY(-6px);border-color:var(--teal);background:rgba(22,194,166,.09)}
+.feature-icon{width:48px;height:48px;border-radius:13px;background:rgba(22,194,166,.12);display:flex;align-items:center;justify-content:center;margin-bottom:18px}
+.feature-icon svg{width:26px;height:26px;stroke:var(--teal);fill:none;stroke-width:1.8}
+.feature-card h3{font-size:20px;font-weight:700;margin-bottom:9px}
+.feature-card p{font-size:15px;color:var(--text-muted)}
+.feature-card .tag{display:inline-block;margin-top:14px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--amber);background:rgba(232,148,31,.1);padding:4px 9px;border-radius:7px}
+
+/* ---------- PRIVACY BAND ---------- */
+.privacy{position:relative;text-align:center;overflow:hidden}
+.privacy .glow{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,var(--teal-glow),transparent 60%);pointer-events:none}
+.privacy .lock{width:64px;height:64px;border-radius:18px;background:rgba(22,194,166,.12);display:inline-flex;align-items:center;justify-content:center;margin-bottom:20px}
+.privacy .lock svg{width:34px;height:34px;stroke:var(--teal);fill:none;stroke-width:1.7}
+.privacy h2{font-size:clamp(30px,3.6vw,48px);font-weight:800;max-width:760px;margin:0 auto 16px}
+.privacy p{color:var(--text-muted);font-size:17px;max-width:600px;margin:0 auto}
+
+/* ---------- STEPS ---------- */
+.steps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
+.step{text-align:center;padding:10px}
+.step .num{width:46px;height:46px;border-radius:50%;border:1.5px solid var(--teal);color:var(--teal);font-family:'Sora';font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:18px}
+.step h3{font-size:18px;margin-bottom:8px}
+.step p{font-size:14.5px;color:var(--text-muted)}
+
+/* ---------- CLOSING CTA ---------- */
+.closing-cta{background:var(--navy-mid);text-align:center;position:relative;overflow:hidden}
+.closing-cta .glow{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,var(--teal-glow) 0%,transparent 70%);pointer-events:none}
+.closing-cta h2{font-size:clamp(32px,4.2vw,56px);font-weight:800;margin-bottom:16px;position:relative}
+.closing-cta p{color:var(--text-muted);font-size:18px;max-width:520px;margin:0 auto 32px;position:relative}
+.closing-cta .btn-primary{position:relative}
+
+/* ---------- FOOTER ---------- */
+footer{padding:48px 0 40px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+footer .logo{justify-content:center;margin-bottom:14px}
+footer .links{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin:14px 0 18px;font-size:14px;color:var(--text-muted)}
+footer .links a:hover{color:var(--teal)}
+footer .fine{font-size:12.5px;color:var(--text-muted)}
+footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:50px;text-align:center}
+  .hero .subtitle{margin-left:auto;margin-right:auto}
+  .hero-actions,.trust{justify-content:center}
+  .feature-grid{grid-template-columns:repeat(2,1fr)}
+  .steps-grid{grid-template-columns:1fr;gap:30px;max-width:340px;margin:10px auto 0}
+  nav .logo span{display:inline}
+}
+@media(max-width:580px){
+  section{padding:80px 0}
+  .feature-grid{grid-template-columns:1fr}
+  .hero{padding-top:110px}
+  .phone{width:240px;height:490px}
+  .btn-primary,.btn-ghost{width:100%;justify-content:center}
+  .hero-actions{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<div class="nav-wrap">
+  <nav>
+    <a class="logo" href="#top">
+      <img class="logo-img" src="logo.png" alt="Homtory Health logo">
+      <span class="brand-name">Homtory Health</span>
+    </a>
+    <a class="nav-cta" href="#download">Download</a>
+  </nav>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="hero-shapes-back"><div class="shape shape-a"></div><div class="shape shape-b"></div></div>
+  <div class="hero-shapes-mid"><div class="shape shape-c"></div></div>
+
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Medicine · Water · Fasting</span>
+        <h1>Your family's health, <span class="accent">remembered.</span></h1>
+        <p class="subtitle">Homtory Health keeps your medicines on time, your water on track, and your fasts — Ekadashi &amp; vrat — in rhythm. With reminders that <em>actually ring</em>. 100% on your phone. Nothing ever leaves your device.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="#download">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V3h2v9.2l2.6-2.6L17 11l-5 5zm-7 3h14v2H5v-2z"/></svg>
+            Download for Android
+          </a>
+          <a class="btn-ghost" href="#features">See what's inside</a>
+        </div>
+        <div class="trust">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg> 100% on-device</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg> No account needed</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> Free</div>
+          <div>🇮🇳 Made in India</div>
+        </div>
+      </div>
+
+      <!-- Phone mockup (CSS, no image needed) -->
+      <div class="hero-visual">
+        <div class="phone">
+          <div class="screen">
+            <div class="screen-hero">
+              <div class="t">TODAY'S PLAN</div>
+              <div class="big">2 / 3 <span class="sm">doses taken</span></div>
+            </div>
+            <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">💊</div><div class="meta"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="pill">Taken</span></div>
+            <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">🌙</div><div class="meta"><b>Ekadashi vrat</b><span>Tomorrow · reminder set</span></div><span class="pill">On</span></div>
+            <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💧</div><div class="meta"><b>Water</b><span>1,400 / 2,000 ml</span></div><span class="pill">70%</span></div>
+            <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">📷</div><div class="meta"><b>Scan a strip</b><span>Auto-fill name &amp; expiry</span></div><span class="pill">New</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a class="scroll-down" href="#features">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+  </a>
+</header>
+
+<!-- ============ FEATURES ============ -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Everything in one place</span>
+      <h2>Built for real Indian households</h2>
+      <p>One private app for the whole family's medicines, hydration, and fasting — designed for phones that fight your reminders.</p>
+    </div>
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Reminders that actually ring</h3>
+        <p>Real alarms — not silent notifications — that survive aggressive battery savers on ColorOS, MIUI &amp; more. Full-screen over the lock screen, with snooze and on-time dose windows.</p>
+        <span class="tag">The #1 reason apps fail</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>100% private, offline-first</h3>
+        <p>Your health data lives only on your phone — no cloud, no tracking, no sign-up. Optional encrypted backup runs only when you tap it. Built around India's DPDP Act.</p>
+        <span class="tag">Nothing leaves your device</span>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg></div>
+        <h3>Scan a strip, add in seconds</h3>
+        <p>Point your camera at a medicine strip — it reads the brand name and expiry date on-device, then walks you through doses and reminders. No typing long names.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div>
+        <h3>Made for Indian fasting</h3>
+        <p>Track Ekadashi, weekly vrat and religious fasts with a calendar built for India. Time your window, log how you broke it, and keep a clean streak — खाली पेट or after food.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
+        <h3>Water, weight &amp; BMI</h3>
+        <p>A satisfying filling-glass tracker with gentle hydration nudges, plus quick weight logging that shows your BMI status at a glance — all in one health card.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M20 7L9 18l-5-5"/><path d="M3 12h2M19 5h2"/><rect x="3" y="3" width="18" height="18" rx="2" opacity=".25"/></svg></div>
+        <h3>Stock &amp; expiry, sorted</h3>
+        <p>Per-batch expiry tracking (oldest used first), low-stock alerts and refill reminders — so you never run out mid-course or take an expired tablet by mistake.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY BAND ============ -->
+<section class="privacy">
+  <div class="glow"></div>
+  <div class="container">
+    <div class="lock"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+    <h2>Health data this personal should never leave your phone.</h2>
+    <p>No servers holding your prescriptions. No ad networks reading your fasts. Homtory stores everything in an encrypted database on your device — and only you hold the key.</p>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section>
+  <div class="container">
+    <div class="sec-head">
+      <span class="eyebrow">Up and running in a minute</span>
+      <h2>How it works</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step"><div class="num">1</div><h3>Install &amp; allow alarms</h3><p>Download the app, allow notifications and turn off battery optimisation when prompted — that's what keeps reminders reliable.</p></div>
+      <div class="step"><div class="num">2</div><h3>Add your medicines</h3><p>Scan a strip with the camera or type it in, set dose times, food relation and how many you have in stock.</p></div>
+      <div class="step"><div class="num">3</div><h3>Let it remember</h3><p>Get on-time alarms, hydration nudges and fasting reminders — for everyone in the family, all from one phone.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DOWNLOAD / CLOSING ============ -->
+<section class="closing-cta" id="download">
+  <div class="glow"></div>
+  <div class="container">
+    <span class="eyebrow">Free &middot; Private &middot; Android 8+</span>
+    <h2>Take care of the people you love.</h2>
+    <p>Download Homtory Health and never miss a dose, a glass of water, or a fast again.</p>
+    <!-- Always serves the newest GitHub Release APK for this repo. -->
+    <a class="btn-primary" id="apk-btn"
+       href="https://github.com/digitalvinayk/homtory-landing/releases/latest/download/Homtory-Health.apk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V3h2v9.2l2.6-2.6L17 11l-5 5zm-7 3h14v2H5v-2z"/></svg>
+      Download for Android
+    </a>
+    <p class="btn-sub" style="margin-top:18px">Free APK · ~103 MB · no account, no ads. You may need to allow “install from unknown sources”.</p>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <a class="logo" href="#top">
+      <img class="logo-img" src="logo.png" alt="Homtory Health logo">
+      <span class="brand-name">Homtory Health</span>
+    </a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#download">Download</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="mailto:upadhyay.raj8@gmail.com">Contact</a>
+    </div>
+    <p class="fine">Homtory Health is a personal wellness tracker and does not provide medical advice. Always follow your doctor's guidance.</p>
+    <p class="made">Made with care in India 🇮🇳 · © 2026 Homtory Health</p>
+  </div>
+</footer>
+
+<script>
+/* ---- Hero entrance (gsap.set FIRST to prevent FOUC) ---- */
+gsap.set([".hero .eyebrow", ".hero h1", ".hero .subtitle", ".hero-actions", ".trust", ".phone", ".scroll-down"], {opacity:0, y:30});
+const tl = gsap.timeline({defaults:{ease:"power3.out"}});
+tl.to(".hero .eyebrow", {opacity:1,y:0,duration:.6})
+  .to(".hero h1", {opacity:1,y:0,duration:.8}, "-=.3")
+  .to(".hero .subtitle", {opacity:1,y:0,duration:.6}, "-=.5")
+  .to(".hero-actions", {opacity:1,y:0,duration:.5}, "-=.3")
+  .to(".trust", {opacity:1,y:0,duration:.5}, "-=.35")
+  .to(".phone", {opacity:1,y:0,duration:.8}, "-=.7")
+  .to(".scroll-down", {opacity:1,y:0,duration:.4}, "-=.2");
+
+/* ---- Mouse parallax ---- */
+const hero = document.querySelector(".hero");
+hero.addEventListener("mousemove", (e)=>{
+  const x=(e.clientX/window.innerWidth-.5)*2, y=(e.clientY/window.innerHeight-.5)*2;
+  gsap.to(".hero-shapes-back",{x:x*45,y:y*22,duration:.8});
+  gsap.to(".hero-shapes-mid",{x:x*24,y:y*12,duration:.8});
+  gsap.to(".phone",{x:x*-14,y:y*-8,rotateY:x*4,duration:.8});
+});
+
+/* ---- Scroll-triggered reveals ----
+   DEFENSIVE: gsap.from(..., immediateRender:false) leaves every element VISIBLE
+   by default and only animates it FROM hidden when its trigger fires. So if a
+   ScrollTrigger never fires (e.g. inside a non-scrolling preview frame, or if
+   ScrollTrigger fails to load), the content simply stays visible instead of
+   getting stuck blank. */
+gsap.registerPlugin(ScrollTrigger);
+const reveal = (sel, vars) => gsap.utils.toArray(sel).forEach((el, i) => {
+  gsap.from(el, {
+    opacity:0, y:48, duration:.7, ease:"power2.out",
+    immediateRender:false,
+    scrollTrigger:{ trigger:el, start:"top 88%" },
+    ...vars
+  });
+});
+reveal(".feature-card");
+[".sec-head",".privacy .lock",".privacy h2",".privacy p",".step",
+ ".closing-cta h2",".closing-cta p",".closing-cta .btn-primary"].forEach(s => reveal(s));
+window.addEventListener("load", () => ScrollTrigger.refresh());
+</script>
+</body>
+</html>
