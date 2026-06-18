@@ -4,135 +4,204 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=1080, initial-scale=1">
 <title>Homtory demo</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#07140F; --navy2:#0B1F18; --teal:#16C2A6; --teal-deep:#0E7C7B;
-  --amber:#E8941F; --off:#F4FBF8; --muted:rgba(244,251,248,.7);
-  --card:rgba(22,194,166,.06); --bord:rgba(22,194,166,.18);
+  --teal:#0E7C7B; --teal2:#16C2A6; --amber:#E8941F; --water:#2E86DE; --water2:#49B6F0;
+  --ink:#0F2A24; --muted:#65766F; --line:#E5ECE9; --appbg:#F3F7F9; --card:#FFFFFF;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy);color:var(--off);font-family:'Inter',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
+html,body{width:1080px;height:1920px;overflow:hidden;background:#07140F}
 .stage{position:relative;width:1080px;height:1920px;overflow:hidden;
-  background:radial-gradient(circle at 50% 18%, #0e2a22 0%, #07140F 60%)}
-.blob{position:absolute;border-radius:50%;filter:blur(10px);opacity:.5}
+  background:radial-gradient(circle at 50% 20%, #0e2a22 0%, #07140F 62%)}
+.blob{position:absolute;border-radius:50%;filter:blur(12px);opacity:.5}
 .b1{width:680px;height:680px;top:-200px;right:-180px;background:radial-gradient(circle,rgba(22,194,166,.22),transparent 65%);animation:f1 9s ease-in-out infinite}
 .b2{width:520px;height:520px;bottom:-160px;left:-160px;background:radial-gradient(circle,rgba(232,148,31,.16),transparent 65%);animation:f2 11s ease-in-out infinite}
 @keyframes f1{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,34px)}}
 @keyframes f2{0%,100%{transform:translate(0,0)}50%{transform:translate(28px,-30px)}}
 
-.brand{position:absolute;top:60px;left:0;right:0;display:flex;gap:18px;align-items:center;justify-content:center;z-index:5}
-.brand img{width:60px;height:60px;border-radius:16px}
-.brand span{font-family:'Sora';font-weight:800;font-size:40px}
+.brand{position:absolute;top:54px;left:0;right:0;display:flex;gap:16px;align-items:center;justify-content:center;z-index:6}
+.brand img{width:54px;height:54px;border-radius:15px}
+.brand span{font-family:'Sora';font-weight:800;font-size:38px;color:#F4FBF8}
 
-.headline{position:absolute;top:188px;left:0;right:0;text-align:center;padding:0 70px;z-index:5;
-  font-family:'Sora';font-weight:800;font-size:74px;line-height:1.08;letter-spacing:-.02em;
-  opacity:0;transform:translateY(28px);transition:opacity .55s ease,transform .55s ease}
-.headline .hl{color:var(--teal)}
-.headline.show{opacity:1;transform:none}
-.caption{position:absolute;bottom:430px;left:0;right:0;text-align:center;padding:0 90px;z-index:5;
-  font-size:34px;color:var(--muted);font-weight:500;
-  opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.caption{position:absolute;bottom:150px;left:0;right:0;text-align:center;padding:0 80px;z-index:6;
+  font-size:38px;font-weight:600;color:var(--teal2);
+  opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
 .caption.show{opacity:1;transform:none}
 
-.phone-wrap{position:absolute;top:430px;left:50%;transform:translateX(-50%);z-index:4;opacity:0;transition:opacity .7s ease}
-.phone-wrap.show{opacity:1}
-.phone{position:relative;width:430px;height:880px;border-radius:60px;padding:20px;
-  background:linear-gradient(160deg,#0f2a22,#06140f);
-  border:1.5px solid rgba(22,194,166,.3);
-  box-shadow:0 60px 120px -30px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.06);
-  animation:float 6s ease-in-out infinite}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-.phone:before{content:"";position:absolute;top:20px;left:50%;transform:translateX(-50%);width:180px;height:32px;background:#06140f;border-radius:0 0 22px 22px;z-index:3}
-.screen{width:100%;height:100%;border-radius:44px;background:linear-gradient(180deg,#0a1f19,#07140f);overflow:hidden;position:relative}
-.slide{position:absolute;inset:0;padding:54px 26px 26px;opacity:0;transition:opacity .55s ease;pointer-events:none}
-.slide.on{opacity:1}
-.s-hero{border-radius:26px;padding:24px;margin-bottom:18px}
-.s-hero .t{font-size:18px;font-weight:700}
-.s-hero .big{font-family:'Sora';font-weight:800;font-size:46px;color:#fff;margin-top:4px}
-.s-hero .sm{font-size:18px;font-weight:600}
-.row{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--bord);border-radius:18px;padding:16px;margin-bottom:14px}
-.dot{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
-.meta{flex:1}
-.meta b{font-size:20px;display:block;font-weight:700}
-.meta span{font-size:15px;color:var(--muted)}
-.pill{font-size:14px;font-weight:700;padding:6px 12px;border-radius:11px;background:rgba(22,194,166,.18);color:var(--teal)}
-.wglass{height:230px;border-radius:22px;background:rgba(46,134,222,.08);border:1px solid rgba(46,134,222,.3);overflow:hidden;display:flex;align-items:flex-end;margin-bottom:16px}
-.wfill{width:100%;height:0;background:linear-gradient(180deg,#49B6F0,#1E6FD6)}
-.slide.on .wfill{animation:wr 1.4s .2s ease forwards}
+/* phone */
+.phone{position:absolute;top:300px;left:50%;transform:translateX(-50%);width:460px;height:940px;border-radius:64px;padding:18px;z-index:4;
+  background:linear-gradient(160deg,#16322a,#0a1812);
+  border:2px solid rgba(22,194,166,.3);
+  box-shadow:0 60px 130px -30px rgba(0,0,0,.75), inset 0 1px 0 rgba(255,255,255,.06)}
+.phone:before{content:"";position:absolute;top:18px;left:50%;transform:translateX(-50%);width:170px;height:30px;background:#0a1812;border-radius:0 0 20px 20px;z-index:30}
+.disp{position:relative;width:100%;height:100%;border-radius:48px;overflow:hidden;background:var(--appbg)}
+.screen{position:absolute;inset:0;opacity:0;transform:translateX(46px);transition:opacity .5s ease,transform .5s ease;display:flex;flex-direction:column}
+.screen.on{opacity:1;transform:none;z-index:2}
+
+/* generic app chrome */
+.topbar{height:96px;display:flex;align-items:center;gap:12px;padding:34px 24px 0;color:var(--ink)}
+.topbar .mi{font-size:30px}
+.topbar img{width:34px;height:34px;border-radius:9px}
+.topbar b{font-family:'Sora';font-size:30px;font-weight:800}
+.scroll{flex:1;padding:8px 24px 24px;overflow:hidden}
+
+/* LOCK */
+.lock{background:linear-gradient(180deg,#F1F8F6,#EAF1FB);align-items:center;justify-content:flex-start;padding-top:120px}
+.lock img{width:120px;height:120px;border-radius:30px;margin-bottom:30px}
+.lock h2{font-family:'Sora';font-weight:800;font-size:46px;color:var(--ink)}
+.lock p{font-size:26px;color:var(--muted);margin-top:8px}
+.dots{display:flex;gap:26px;margin:46px 0}
+.dots i{width:30px;height:30px;border-radius:50%;border:3px solid var(--teal);transition:.25s}
+.dots i.f{background:var(--teal)}
+.pad{display:grid;grid-template-columns:repeat(3,1fr);gap:26px 40px;margin-top:30px}
+.pad b{width:108px;height:108px;border-radius:50%;background:rgba(14,124,123,.07);display:flex;align-items:center;justify-content:center;font-size:42px;font-weight:600;color:var(--ink)}
+
+/* DASHBOARD */
+.greet{color:var(--ink)}
+.greet h3{font-family:'Sora';font-weight:800;font-size:40px}
+.greet .d{font-size:22px;color:var(--muted);margin:4px 0 12px}
+.chip{display:inline-block;font-size:20px;font-weight:700;color:var(--amber);background:rgba(232,148,31,.12);padding:8px 16px;border-radius:14px}
+.dcard{border-radius:24px;padding:24px;margin-top:18px;position:relative;overflow:hidden}
+.dcard .lab{font-size:21px;font-weight:600;opacity:.8}
+.dcard .val{font-family:'Sora';font-weight:800;font-size:34px;margin-top:4px}
+.dcard .sub{font-size:20px;opacity:.8;margin-top:2px}
+.c-health{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.c-med{background:linear-gradient(135deg,var(--teal),var(--teal2));color:#fff}
+.c-water{background:linear-gradient(135deg,#1E6FD6,var(--water2));color:#fff}
+.c-fast{background:linear-gradient(135deg,#B5701A,var(--amber));color:#fff}
+.tap{position:absolute;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.5);opacity:0;pointer-events:none;z-index:20}
+.tap.go{animation:ripple .7s ease-out}
+@keyframes ripple{0%{transform:scale(.2);opacity:.55}100%{transform:scale(2.2);opacity:0}}
+
+/* HERO band (med/water/fast) */
+.hero{border-radius:26px;padding:26px;color:#fff;margin-bottom:18px}
+.hero .t{font-size:22px;font-weight:700;opacity:.9}
+.hero .big{font-family:'Sora';font-weight:800;font-size:44px;margin-top:4px}
+.h-med{background:linear-gradient(135deg,var(--teal),var(--teal2))}
+.h-water{background:linear-gradient(135deg,#1E6FD6,var(--water2))}
+.h-fast{background:linear-gradient(135deg,#B5701A,var(--amber))}
+.sect{font-size:22px;font-weight:700;color:var(--muted);margin:14px 0 10px;display:flex;align-items:center;gap:10px}
+.dose{display:flex;align-items:center;gap:16px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:14px}
+.dose .ic{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0}
+.dose .m{flex:1;color:var(--ink)}
+.dose .m b{font-size:24px;font-weight:700;display:block}
+.dose .m span{font-size:18px;color:var(--muted)}
+.take{font-size:20px;font-weight:700;padding:12px 22px;border-radius:14px;background:var(--teal);color:#fff;transition:.3s}
+.taken{font-size:20px;font-weight:700;padding:12px 20px;border-radius:14px;background:rgba(46,160,107,.14);color:#2FA36B}
+
+/* water glass */
+.glass{width:230px;height:330px;border:6px solid rgba(46,134,222,.5);border-top:none;border-radius:0 0 50px 50px;margin:24px auto;overflow:hidden;display:flex;align-items:flex-end;background:rgba(46,134,222,.05)}
+.glass .fill{width:100%;height:0;background:linear-gradient(180deg,var(--water2),#1E6FD6)}
+.screen.on .glass .fill{animation:wr 1.5s .3s ease forwards}
 @keyframes wr{to{height:70%}}
-.ring{width:210px;height:210px;border-radius:50%;margin:14px auto 18px;background:conic-gradient(var(--amber) 0% 59%, rgba(232,148,31,.16) 0);display:flex;align-items:center;justify-content:center}
-.ring-in{width:158px;height:158px;border-radius:50%;background:#0a1f19;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;font-size:42px;color:var(--amber)}
-.scan{position:relative;height:300px;border-radius:22px;border:3px dashed rgba(22,194,166,.55);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:16px;background:rgba(22,194,166,.05)}
-.scan b{font-family:'Sora';font-weight:800;font-size:40px;color:#fff;text-align:center;letter-spacing:.05em}
-.scan small{display:block;font-size:18px;color:var(--muted);font-weight:600;margin-top:6px}
-.scanline{position:absolute;left:14px;right:14px;top:20px;height:3px;background:var(--teal);box-shadow:0 0 22px 3px var(--teal)}
-.slide.on .scanline{animation:sc 2.4s ease-in-out infinite}
-@keyframes sc{0%,100%{top:20px}50%{top:270px}}
+.wlabel{text-align:center;font-family:'Sora';font-weight:800;font-size:40px;color:var(--ink);margin-top:6px}
+.wlabel span{font-size:24px;color:var(--muted);font-weight:600}
 
-.bar{position:absolute;bottom:300px;left:90px;right:90px;height:6px;border-radius:3px;background:rgba(255,255,255,.12);z-index:5;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--amber));border-radius:3px;transition:width .5s linear}
+/* fasting ring */
+.ring{width:300px;height:300px;border-radius:50%;margin:30px auto;background:conic-gradient(var(--amber) 0% 59%, #F0E2CE 0);display:flex;align-items:center;justify-content:center}
+.ring .in{width:230px;height:230px;border-radius:50%;background:var(--appbg);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring .in b{font-family:'Sora';font-weight:800;font-size:56px;color:var(--amber)}
+.ring .in span{font-size:22px;color:var(--muted)}
 
-.cta{position:absolute;inset:0;z-index:8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;
-  background:radial-gradient(circle at 50% 45%, rgba(22,194,166,.12), transparent 60%), var(--navy);
-  opacity:0;transition:opacity .7s ease;pointer-events:none;padding:0 80px;text-align:center}
+/* scan */
+.scanframe{position:relative;height:340px;border-radius:24px;border:4px dashed rgba(14,124,123,.5);display:flex;align-items:center;justify-content:center;overflow:hidden;background:rgba(14,124,123,.05);margin:10px 0 18px}
+.scanframe b{font-family:'Sora';font-weight:800;font-size:48px;color:var(--ink);text-align:center}
+.scanframe small{display:block;font-size:22px;color:var(--muted);font-weight:600;margin-top:8px}
+.scanline{position:absolute;left:16px;right:16px;top:24px;height:4px;background:var(--teal2);box-shadow:0 0 26px 4px var(--teal2)}
+.screen.on .scanline{animation:sc 2.4s ease-in-out infinite}
+@keyframes sc{0%,100%{top:24px}50%{top:300px}}
+.cont{margin-top:8px;text-align:center;font-size:24px;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--teal),var(--teal2));padding:22px;border-radius:18px}
+
+/* CTA */
+.cta{position:absolute;inset:0;z-index:9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:30px;text-align:center;padding:0 80px;
+  background:radial-gradient(circle at 50% 45%, rgba(22,194,166,.12), transparent 60%), #07140F;
+  opacity:0;transition:opacity .7s ease}
 .cta.show{opacity:1}
-.cta img.logo{width:120px;height:120px;border-radius:30px}
-.cta h2{font-family:'Sora';font-weight:800;font-size:78px;line-height:1.08}
-.cta p{font-size:36px;color:var(--muted)}
-.cta .btn{display:inline-flex;align-items:center;gap:14px;font-size:38px;font-weight:700;padding:28px 54px;border-radius:22px;
-  background:linear-gradient(135deg,var(--teal),var(--teal-deep));color:#04221c;box-shadow:0 20px 50px -12px rgba(22,194,166,.6)}
+.cta img.lg{width:130px;height:130px;border-radius:32px}
+.cta h2{font-family:'Sora';font-weight:800;font-size:80px;line-height:1.08;color:#F4FBF8}
+.cta p{font-size:36px;color:rgba(244,251,248,.7)}
+.cta .btn{display:inline-flex;align-items:center;gap:14px;font-size:38px;font-weight:700;padding:28px 54px;border-radius:22px;background:linear-gradient(135deg,var(--teal2),var(--teal));color:#04221c;box-shadow:0 20px 50px -12px rgba(22,194,166,.6)}
 .cta .gp{height:96px;border-radius:14px}
-.cta .url{font-size:30px;color:var(--teal);font-weight:600;letter-spacing:.02em}
+.cta .url{font-size:30px;color:var(--teal2);font-weight:600}
 </style>
 </head>
 <body>
 <div class="stage">
   <div class="blob b1"></div><div class="blob b2"></div>
-
   <div class="brand"><img src="logo.png" alt=""><span>Homtory</span></div>
 
-  <!-- headlines (one shown per scene) -->
-  <div class="headline" data-k="med">Reminders that<br><span class="hl">actually ring</span></div>
-  <div class="headline" data-k="water">Stay <span class="hl">hydrated</span></div>
-  <div class="headline" data-k="fast">Fast with <span class="hl">rhythm</span></div>
-  <div class="headline" data-k="scan">Scan a strip<br>to <span class="hl">add it</span></div>
+  <div class="phone"><div class="disp">
 
-  <div class="phone-wrap" id="phoneWrap">
-    <div class="phone"><div class="screen">
-      <div class="slide" data-k="med">
-        <div class="s-hero" style="background:linear-gradient(135deg,var(--teal-deep),var(--teal))"><div class="t" style="color:#053b34">TODAY'S PLAN</div><div class="big">2 / 3 <span class="sm" style="color:rgba(255,255,255,.9)">doses taken</span></div></div>
-        <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">💊</div><div class="meta"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="pill">Taken</span></div>
-        <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💊</div><div class="meta"><b>Vitamin D3</b><span>9:00 AM · with food</span></div><span class="pill">Taken</span></div>
-        <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">💊</div><div class="meta"><b>Amlodipine</b><span>9:00 PM · bedtime</span></div><span class="pill" style="background:rgba(232,148,31,.18);color:var(--amber)">Due</span></div>
-      </div>
-      <div class="slide" data-k="water">
-        <div class="s-hero" style="background:linear-gradient(135deg,#1E6FD6,#49B6F0)"><div class="t" style="color:#06223f">WATER TODAY</div><div class="big">1,400<span class="sm" style="color:rgba(255,255,255,.9)"> / 2,000 ml</span></div></div>
-        <div class="wglass"><div class="wfill"></div></div>
-        <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💧</div><div class="meta"><b>+250 ml added</b><span>70% of today's goal</span></div><span class="pill">70%</span></div>
-      </div>
-      <div class="slide" data-k="fast">
-        <div class="s-hero" style="background:linear-gradient(135deg,#B5701A,#E8941F)"><div class="t" style="color:#3a2606">EKADASHI VRAT</div><div class="big">14:20<span class="sm" style="color:rgba(255,255,255,.9)"> / 24h</span></div></div>
-        <div class="ring"><div class="ring-in">59%</div></div>
-        <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">🌙</div><div class="meta"><b>Started 6:00 AM</b><span>Breaks tomorrow at sunrise</span></div></div>
-      </div>
-      <div class="slide" data-k="scan">
-        <div class="scan"><div class="scanline"></div><b>NICIP-P<small>EXP 08/2026</small></b></div>
-        <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">📷</div><div class="meta"><b>Nicip-P</b><span>Expiry: Aug 2026</span></div><span class="pill">Filled</span></div>
-      </div>
-    </div></div>
-  </div>
+    <!-- LOCK -->
+    <div class="screen lock" id="s-lock">
+      <img src="logo.png" alt="">
+      <h2>Enter your PIN</h2>
+      <p>Welcome back</p>
+      <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
+      <div class="pad"><b>1</b><b>2</b><b>3</b><b>4</b><b>5</b><b>6</b><b>7</b><b>8</b><b>9</b><b>☺</b><b>0</b><b>⌫</b></div>
+    </div>
 
-  <!-- captions (one shown per scene) -->
-  <div class="caption" data-k="med">Real alarms that survive battery-killers</div>
-  <div class="caption" data-k="water">A filling glass and gentle nudges</div>
-  <div class="caption" data-k="fast">Ekadashi and vrat, tracked for India</div>
-  <div class="caption" data-k="scan">Camera reads name and expiry on-device</div>
+    <!-- DASHBOARD -->
+    <div class="screen" id="s-dash">
+      <div class="topbar"><span class="mi">☰</span><img src="logo.png" alt=""><b>Homtory</b></div>
+      <div class="scroll">
+        <div class="greet"><h3>Good morning, Vinay</h3><div class="d">Wednesday, 18 June</div><span class="chip">🔥 5-day streak</span></div>
+        <div class="dcard c-health"><div class="lab">Health</div><div class="val">68.0 kg · BMI 22.5</div><div class="sub">✅ Healthy weight</div></div>
+        <div class="dcard c-med"><div class="lab">Next dose</div><div class="val">Amlodipine · 9:00 PM</div><div class="sub">2 of 3 taken today</div><div class="tap" id="tapMed" style="right:40px;top:30px"></div></div>
+        <div class="dcard c-water"><div class="lab">Water</div><div class="val">1,400 / 2,000 ml</div><div class="sub">70% of today's goal</div></div>
+        <div class="dcard c-fast"><div class="lab">Fasting</div><div class="val">Ekadashi vrat</div><div class="sub">14:20 elapsed</div></div>
+      </div>
+    </div>
 
-  <div class="bar"><i id="barfill"></i></div>
+    <!-- MEDICINE -->
+    <div class="screen" id="s-med">
+      <div class="topbar"><span class="mi">‹</span><b>Medicine Tracker</b><span style="margin-left:auto;font-size:30px">📷</span></div>
+      <div class="scroll">
+        <div class="hero h-med"><div class="t">TODAY'S PLAN</div><div class="big" id="medCount">2 / 3 doses taken</div></div>
+        <div class="sect">☀️ Morning</div>
+        <div class="dose"><div class="ic" style="background:rgba(14,124,123,.12)">💊</div><div class="m"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="taken">✓ Taken</span></div>
+        <div class="sect">🌙 Night</div>
+        <div class="dose"><div class="ic" style="background:rgba(232,148,31,.14)">💊</div><div class="m"><b>Amlodipine 5</b><span>9:00 PM · bedtime</span></div><span class="take" id="takeBtn">Take</span></div>
+      </div>
+    </div>
+
+    <!-- WATER -->
+    <div class="screen" id="s-water">
+      <div class="topbar"><span class="mi">‹</span><b>Water Tracker</b></div>
+      <div class="scroll">
+        <div class="hero h-water"><div class="t">TODAY</div><div class="big">1,400 ml of 2,000 ml</div></div>
+        <div class="glass"><div class="fill"></div></div>
+        <div class="wlabel">70% <span>of daily goal</span></div>
+      </div>
+    </div>
+
+    <!-- FASTING -->
+    <div class="screen" id="s-fast">
+      <div class="topbar"><span class="mi">‹</span><b>Fasting</b></div>
+      <div class="scroll">
+        <div class="hero h-fast"><div class="t">EKADASHI VRAT</div><div class="big">14h 20m elapsed</div></div>
+        <div class="ring"><div class="in"><b>59%</b><span>of 24h</span></div></div>
+        <div class="sect" style="justify-content:center">Breaks tomorrow at sunrise</div>
+      </div>
+    </div>
+
+    <!-- SCAN -->
+    <div class="screen" id="s-scan">
+      <div class="topbar"><span class="mi">✕</span><b>Scan medicine</b></div>
+      <div class="scroll">
+        <div class="scanframe"><div class="scanline"></div><b>NICIP-P<small>EXP 08/2026</small></b></div>
+        <div class="dose"><div class="ic" style="background:rgba(14,124,123,.12)">📷</div><div class="m"><b>Nicip-P</b><span>Expiry: Aug 2026</span></div><span class="taken">Filled</span></div>
+        <div class="cont">Continue — add doses &amp; reminders</div>
+      </div>
+    </div>
+
+  </div></div>
+
+  <div class="caption" id="cap"></div>
 
   <div class="cta" id="cta">
-    <img class="logo" src="logo.png" alt="">
+    <img class="lg" src="logo.png" alt="">
     <h2>Your family's health,<br>remembered.</h2>
     <p>100% private · Free · Made in India</p>
     <div class="btn">⬇ Download for Android</div>
@@ -142,27 +211,26 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--navy);colo
 </div>
 
 <script>
-const PW=document.getElementById('phoneWrap'), CTA=document.getElementById('cta'), BAR=document.getElementById('barfill');
-const heads=[...document.querySelectorAll('.headline')];
-const caps=[...document.querySelectorAll('.caption')];
-const slides=[...document.querySelectorAll('.slide')];
-function showK(k){
-  heads.forEach(e=>e.classList.toggle('show', e.dataset.k===k));
-  caps.forEach(e=>e.classList.toggle('show', e.dataset.k===k));
-  slides.forEach(s=>s.classList.toggle('on', s.dataset.k===k));
-}
-const TOTAL=21000;
-const scenes=[
-  [400,  ()=>{ PW.classList.add('show'); showK('med'); }],
-  [4800, ()=>showK('water')],
-  [9000, ()=>showK('fast')],
-  [13200,()=>showK('scan')],
-  [17400,()=>{ heads.forEach(e=>e.classList.remove('show')); caps.forEach(e=>e.classList.remove('show')); PW.style.opacity='0'; CTA.classList.add('show'); }],
+const cap=document.getElementById('cap');
+const show=id=>document.querySelectorAll('.screen').forEach(s=>s.classList.toggle('on', s.id===id));
+function setCap(t){ cap.classList.remove('show'); void cap.offsetWidth; cap.textContent=t; cap.classList.add('show'); }
+
+// lock screen: fill PIN dots one by one
+function fillPin(){ const d=[...document.querySelectorAll('#dots i')]; d.forEach((x,i)=>setTimeout(()=>x.classList.add('f'), 500+i*380)); }
+
+show('s-lock'); setCap('Unlock with your PIN'); fillPin();
+
+const t=[
+  [3000, ()=>{ show('s-dash'); setCap('Your whole day at a glance'); }],
+  [4600, ()=>{ document.getElementById('tapMed').classList.add('go'); }],
+  [6400, ()=>{ show('s-med'); setCap('Tick off every dose'); }],
+  [8400, ()=>{ const b=document.getElementById('takeBtn'); b.textContent='✓ Taken'; b.className='taken'; document.getElementById('medCount').textContent='3 / 3 doses taken'; }],
+  [10400,()=>{ show('s-water'); setCap('Log water, stay on track'); }],
+  [13400,()=>{ show('s-fast'); setCap('Track Ekadashi & vrat'); }],
+  [16400,()=>{ show('s-scan'); setCap('Scan a strip to add it'); }],
+  [19800,()=>{ cap.classList.remove('show'); document.querySelector('.phone').style.opacity='0'; document.querySelector('.phone').style.transition='opacity .6s'; document.getElementById('cta').classList.add('show'); }],
 ];
-scenes.forEach(([t,fn])=>setTimeout(fn,t));
-let start=Date.now();
-const iv=setInterval(()=>{ const p=Math.min(1,(Date.now()-start)/17000); BAR.style.width=(p*100)+'%'; if(p>=1) clearInterval(iv); },120);
-window.__demoDone=false; setTimeout(()=>{window.__demoDone=true;}, TOTAL);
+t.forEach(([ms,fn])=>setTimeout(fn,ms));
 </script>
 </body>
 </html>
