@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homtory Health — Medicine reminders, water & fasting, 100% private</title>
-<meta name="description" content="Homtory Health keeps your family's medicines on time, water on track, and fasts (Ekadashi & vrat) in rhythm — with reminders that actually ring. 100% on your phone. Nothing leaves your device.">
+<title>Homtory Health, Medicine reminders, water & fasting, 100% private</title>
+<meta name="description" content="Homtory Health keeps your family's medicines on time, water on track, and fasts (Ekadashi & vrat) in rhythm, with reminders that actually ring. 100% on your phone. Nothing leaves your device.">
 
 <!-- Open Graph / social share -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="Homtory Health — your family's health, remembered">
-<meta property="og:description" content="Medicine reminders that actually ring, water tracking, and Indian fasting — 100% on your phone. Free. Private. Made in India.">
+<meta property="og:title" content="Homtory Health, your family's health, remembered">
+<meta property="og:description" content="Medicine reminders that actually ring, water tracking, and Indian fasting, 100% on your phone. Free. Private. Made in India.">
 <meta property="og:image" content="logo.png">
 <meta name="theme-color" content="#0E7C7B">
 <link rel="icon" type="image/png" href="logo.png">
@@ -119,6 +119,32 @@ nav{
 .row .meta span{font-size:10px;color:var(--text-muted)}
 .pill{font-size:9px;font-weight:700;padding:4px 8px;border-radius:8px;background:rgba(22,194,166,.18);color:var(--teal)}
 
+/* animated "how it works" demo (cycles inside the phone) */
+.slide{position:absolute;top:0;left:0;right:0;bottom:0;padding:28px 16px 16px;opacity:0;transform:translateY(10px);transition:opacity .55s ease,transform .55s ease;pointer-events:none}
+.slide.active{opacity:1;transform:none}
+.wglass{height:150px;border-radius:16px;background:rgba(46,134,222,.08);border:1px solid rgba(46,134,222,.25);overflow:hidden;display:flex;align-items:flex-end;margin-bottom:10px}
+.wfill{width:100%;height:0;background:linear-gradient(180deg,#49B6F0,#1E6FD6)}
+.slide.active .wfill{animation:wrise 1.4s .2s ease forwards}
+@keyframes wrise{from{height:0}to{height:70%}}
+.ring{width:128px;height:128px;border-radius:50%;margin:8px auto 12px;background:conic-gradient(var(--amber) 0% 59%, rgba(232,148,31,.16) 59% 100%);display:flex;align-items:center;justify-content:center}
+.ring-in{width:96px;height:96px;border-radius:50%;background:#0a1f19;display:flex;align-items:center;justify-content:center;font-family:'Sora';font-weight:800;font-size:22px;color:var(--amber)}
+.scan-frame{position:relative;height:170px;border-radius:16px;border:2px dashed rgba(22,194,166,.55);display:flex;align-items:center;justify-content:center;margin-bottom:12px;overflow:hidden;background:rgba(22,194,166,.05)}
+.scan-strip{font-family:'Sora';font-weight:800;font-size:22px;color:#fff;text-align:center;letter-spacing:.06em}
+.scan-strip small{font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:0}
+.scan-line{position:absolute;left:8px;right:8px;top:14px;height:2px;background:var(--teal);box-shadow:0 0 14px 2px var(--teal)}
+.slide.active .scan-line{animation:scanmove 2.2s ease-in-out infinite}
+@keyframes scanmove{0%,100%{top:14px}50%{top:152px}}
+.demo-caption{text-align:center;margin-top:18px;font-size:13.5px;color:var(--teal);font-weight:600;min-height:18px}
+.demo-dots{display:flex;gap:6px;justify-content:center;margin-top:10px}
+.demo-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
+.demo-dots i.on{background:var(--teal);width:20px;border-radius:4px}
+
+/* Google Play badge + download row */
+.dl-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap}
+.gplay{display:inline-block;line-height:0;transition:transform .25s ease,filter .25s ease}
+.gplay img{height:56px;display:block;border-radius:8px}
+.gplay:hover{transform:translateY(-3px);filter:brightness(1.08)}
+
 /* trust strip */
 .trust{display:flex;flex-wrap:wrap;gap:10px 26px;margin-top:30px}
 .trust div{display:flex;align-items:center;gap:7px;font-size:13.5px;color:var(--text-muted)}
@@ -218,13 +244,14 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
       <div class="hero-copy">
         <span class="eyebrow">Medicine · Water · Fasting</span>
         <h1>Your family's health, <span class="accent">remembered.</span></h1>
-        <p class="subtitle">Homtory Health keeps your medicines on time, your water on track, and your fasts — Ekadashi &amp; vrat — in rhythm. With reminders that <em>actually ring</em>. 100% on your phone. Nothing ever leaves your device.</p>
+        <p class="subtitle">Homtory Health keeps your medicines on time, your water on track, and your fasts, Ekadashi &amp; vrat, in rhythm. With reminders that <em>actually ring</em>. 100% on your phone. Nothing ever leaves your device.</p>
         <div class="hero-actions">
           <a class="btn-primary" href="#download">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V3h2v9.2l2.6-2.6L17 11l-5 5zm-7 3h14v2H5v-2z"/></svg>
             Download for Android
           </a>
           <a class="btn-ghost" href="#features">See what's inside</a>
+          <a class="gplay" href="#download" aria-label="Get it on Google Play (coming soon)"><img src="google-play-badge.png" alt="Get it on Google Play"></a>
         </div>
         <div class="trust">
           <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.4 8.5-8 10-4.6-1.5-8-5-8-10V6z"/></svg> 100% on-device</div>
@@ -238,16 +265,34 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
       <div class="hero-visual">
         <div class="phone">
           <div class="screen">
-            <div class="screen-hero">
-              <div class="t">TODAY'S PLAN</div>
-              <div class="big">2 / 3 <span class="sm">doses taken</span></div>
+            <!-- Slide 1: medicine plan -->
+            <div class="slide active" data-cap="Track every dose, on time">
+              <div class="screen-hero"><div class="t">TODAY'S PLAN</div><div class="big">2 / 3 <span class="sm">doses taken</span></div></div>
+              <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">💊</div><div class="meta"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="pill">Taken</span></div>
+              <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💊</div><div class="meta"><b>Vitamin D3</b><span>9:00 AM · with food</span></div><span class="pill">Taken</span></div>
+              <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">💊</div><div class="meta"><b>Amlodipine</b><span>9:00 PM · bedtime</span></div><span class="pill" style="background:rgba(232,148,31,.18);color:var(--amber)">Due</span></div>
             </div>
-            <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">💊</div><div class="meta"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="pill">Taken</span></div>
-            <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">🌙</div><div class="meta"><b>Ekadashi vrat</b><span>Tomorrow · reminder set</span></div><span class="pill">On</span></div>
-            <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💧</div><div class="meta"><b>Water</b><span>1,400 / 2,000 ml</span></div><span class="pill">70%</span></div>
-            <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">📷</div><div class="meta"><b>Scan a strip</b><span>Auto-fill name &amp; expiry</span></div><span class="pill">New</span></div>
+            <!-- Slide 2: water -->
+            <div class="slide" data-cap="Stay hydrated through the day">
+              <div class="screen-hero" style="background:linear-gradient(135deg,#1E6FD6,#49B6F0)"><div class="t" style="color:#06223f">WATER TODAY</div><div class="big">1,400<span class="sm"> / 2,000 ml</span></div></div>
+              <div class="wglass"><div class="wfill"></div></div>
+              <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💧</div><div class="meta"><b>+250 ml added</b><span>70% of today's goal</span></div><span class="pill">70%</span></div>
+            </div>
+            <!-- Slide 3: fasting -->
+            <div class="slide" data-cap="Fast with the right rhythm">
+              <div class="screen-hero" style="background:linear-gradient(135deg,#B5701A,#E8941F)"><div class="t" style="color:#3a2606">EKADASHI VRAT</div><div class="big">14:20<span class="sm"> / 24h</span></div></div>
+              <div class="ring"><div class="ring-in">59%</div></div>
+              <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">🌙</div><div class="meta"><b>Started 6:00 AM</b><span>Breaks tomorrow at sunrise</span></div></div>
+            </div>
+            <!-- Slide 4: scan -->
+            <div class="slide" data-cap="Scan a strip to add it">
+              <div class="scan-frame"><div class="scan-line"></div><div class="scan-strip">NICIP-P<br><small>EXP 08/2026</small></div></div>
+              <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">📷</div><div class="meta"><b>Nicip-P</b><span>Expiry: Aug 2026</span></div><span class="pill">Filled</span></div>
+            </div>
           </div>
         </div>
+        <div class="demo-caption">Track every dose, on time</div>
+        <div class="demo-dots"><i class="on"></i><i></i><i></i><i></i></div>
       </div>
     </div>
   </div>
@@ -264,46 +309,46 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
     <div class="sec-head">
       <span class="eyebrow">Everything in one place</span>
       <h2>Built for real Indian households</h2>
-      <p>One private app for the whole family's medicines, hydration, and fasting — designed for phones that fight your reminders.</p>
+      <p>One private app for the whole family's medicines, hydration, and fasting, designed for phones that fight your reminders.</p>
     </div>
     <div class="feature-grid">
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="9"/></svg></div>
         <h3>Reminders that actually ring</h3>
-        <p>Real alarms — not silent notifications — that survive aggressive battery savers on ColorOS, MIUI &amp; more. Full-screen over the lock screen, with snooze and on-time dose windows.</p>
+        <p>Real alarms, not silent notifications, that survive aggressive battery savers on ColorOS, MIUI &amp; more. Full-screen over the lock screen, with snooze and on-time dose windows.</p>
         <span class="tag">The #1 reason apps fail</span>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V7z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>100% private, offline-first</h3>
-        <p>Your health data lives only on your phone — no cloud, no tracking, no sign-up. Optional encrypted backup runs only when you tap it. Built around India's DPDP Act.</p>
+        <p>Your health data lives only on your phone, no cloud, no tracking, no sign-up. Optional encrypted backup runs only when you tap it. Built around India's DPDP Act.</p>
         <span class="tag">Nothing leaves your device</span>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M8 5l1.5-2h5L16 5"/></svg></div>
         <h3>Scan a strip, add in seconds</h3>
-        <p>Point your camera at a medicine strip — it reads the brand name and expiry date on-device, then walks you through doses and reminders. No typing long names.</p>
+        <p>Point your camera at a medicine strip, it reads the brand name and expiry date on-device, then walks you through doses and reminders. No typing long names.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></div>
         <h3>Made for Indian fasting</h3>
-        <p>Track Ekadashi, weekly vrat and religious fasts with a calendar built for India. Time your window, log how you broke it, and keep a clean streak — खाली पेट or after food.</p>
+        <p>Track Ekadashi, weekly vrat and religious fasts with a calendar built for India. Time your window, log how you broke it, and keep a clean streak, खाली पेट or after food.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div>
         <h3>Water, weight &amp; BMI</h3>
-        <p>A satisfying filling-glass tracker with gentle hydration nudges, plus quick weight logging that shows your BMI status at a glance — all in one health card.</p>
+        <p>A satisfying filling-glass tracker with gentle hydration nudges, plus quick weight logging that shows your BMI status at a glance, all in one health card.</p>
       </div>
 
       <div class="feature-card">
         <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M20 7L9 18l-5-5"/><path d="M3 12h2M19 5h2"/><rect x="3" y="3" width="18" height="18" rx="2" opacity=".25"/></svg></div>
         <h3>Stock &amp; expiry, sorted</h3>
-        <p>Per-batch expiry tracking (oldest used first), low-stock alerts and refill reminders — so you never run out mid-course or take an expired tablet by mistake.</p>
+        <p>Per-batch expiry tracking (oldest used first), low-stock alerts and refill reminders, so you never run out mid-course or take an expired tablet by mistake.</p>
       </div>
 
     </div>
@@ -316,7 +361,7 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
   <div class="container">
     <div class="lock"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
     <h2>Health data this personal should never leave your phone.</h2>
-    <p>No servers holding your prescriptions. No ad networks reading your fasts. Homtory stores everything in an encrypted database on your device — and only you hold the key.</p>
+    <p>No servers holding your prescriptions. No ad networks reading your fasts. Homtory stores everything in an encrypted database on your device, and only you hold the key.</p>
   </div>
 </section>
 
@@ -328,9 +373,9 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
       <h2>How it works</h2>
     </div>
     <div class="steps-grid">
-      <div class="step"><div class="num">1</div><h3>Install &amp; allow alarms</h3><p>Download the app, allow notifications and turn off battery optimisation when prompted — that's what keeps reminders reliable.</p></div>
+      <div class="step"><div class="num">1</div><h3>Install &amp; allow alarms</h3><p>Download the app, allow notifications and turn off battery optimisation when prompted, that's what keeps reminders reliable.</p></div>
       <div class="step"><div class="num">2</div><h3>Add your medicines</h3><p>Scan a strip with the camera or type it in, set dose times, food relation and how many you have in stock.</p></div>
-      <div class="step"><div class="num">3</div><h3>Let it remember</h3><p>Get on-time alarms, hydration nudges and fasting reminders — for everyone in the family, all from one phone.</p></div>
+      <div class="step"><div class="num">3</div><h3>Let it remember</h3><p>Get on-time alarms, hydration nudges and fasting reminders, for everyone in the family, all from one phone.</p></div>
     </div>
   </div>
 </section>
@@ -342,13 +387,21 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
     <span class="eyebrow">Free &middot; Private &middot; Android 8+</span>
     <h2>Take care of the people you love.</h2>
     <p>Download Homtory Health and never miss a dose, a glass of water, or a fast again.</p>
-    <!-- Always serves the newest GitHub Release APK for this repo. -->
-    <a class="btn-primary" id="apk-btn"
-       href="https://github.com/digitalvinayk/homtory-landing/releases/latest/download/Homtory-Health.apk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V3h2v9.2l2.6-2.6L17 11l-5 5zm-7 3h14v2H5v-2z"/></svg>
-      Download for Android
-    </a>
-    <p class="btn-sub" style="margin-top:18px">Free APK · ~103 MB · no account, no ads. You may need to allow “install from unknown sources”.</p>
+    <div class="dl-row">
+      <!-- Always serves the newest GitHub Release APK for this repo. -->
+      <a class="btn-primary" id="apk-btn"
+         href="https://github.com/digitalvinayk/homtory-landing/releases/latest/download/Homtory-Health.apk">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 16l-5-5 1.4-1.4L11 12.2V3h2v9.2l2.6-2.6L17 11l-5 5zm-7 3h14v2H5v-2z"/></svg>
+        Download for Android
+      </a>
+      <!-- Google Play: app not published yet, so this scrolls to the download
+           options for now. Once live, swap href to:
+           https://play.google.com/store/apps/details?id=com.homtory.homtory_health -->
+      <a class="gplay" href="#download" aria-label="Get it on Google Play (coming soon)">
+        <img src="google-play-badge.png" alt="Get it on Google Play">
+      </a>
+    </div>
+    <p class="btn-sub" style="margin-top:18px">Direct APK: free, ~103 MB, no account, no ads (allow “install from unknown sources”). Google Play version coming soon.</p>
   </div>
 </section>
 
@@ -410,6 +463,21 @@ reveal(".feature-card");
 [".sec-head",".privacy .lock",".privacy h2",".privacy p",".step",
  ".closing-cta h2",".closing-cta p",".closing-cta .btn-primary"].forEach(s => reveal(s));
 window.addEventListener("load", () => ScrollTrigger.refresh());
+
+/* ---- Animated "how it works" demo: auto-cycle the phone screens ---- */
+(function(){
+  const slides = [...document.querySelectorAll(".slide")];
+  const dots   = [...document.querySelectorAll(".demo-dots i")];
+  const cap    = document.querySelector(".demo-caption");
+  if (slides.length < 2) return;
+  let i = 0;
+  setInterval(() => {
+    i = (i + 1) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle("active", k === i));
+    dots.forEach((d, k) => d.classList.toggle("on", k === i));
+    if (cap) cap.textContent = slides[i].dataset.cap || "";
+  }, 2800);
+})();
 </script>
 </body>
 </html>
