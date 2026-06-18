@@ -139,6 +139,12 @@ nav{
 .demo-dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.18);transition:.3s}
 .demo-dots i.on{background:var(--teal);width:20px;border-radius:4px}
 
+/* embedded demo video (replaces the CSS phone animation) */
+.hero-video{display:block;width:100%;max-width:300px;aspect-ratio:9/16;margin:0 auto;
+  border-radius:30px;object-fit:cover;background:#07140F;
+  border:1px solid rgba(22,194,166,.2);
+  box-shadow:0 40px 90px -25px rgba(0,0,0,.65)}
+
 /* Google Play badge + download row */
 .dl-row{display:flex;gap:16px;align-items:center;justify-content:center;flex-wrap:wrap}
 .gplay{display:inline-block;line-height:0;transition:transform .25s ease,filter .25s ease}
@@ -263,36 +269,9 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
 
       <!-- Phone mockup (CSS, no image needed) -->
       <div class="hero-visual">
-        <div class="phone">
-          <div class="screen">
-            <!-- Slide 1: medicine plan -->
-            <div class="slide active" data-cap="Track every dose, on time">
-              <div class="screen-hero"><div class="t">TODAY'S PLAN</div><div class="big">2 / 3 <span class="sm">doses taken</span></div></div>
-              <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">💊</div><div class="meta"><b>Metformin 500</b><span>8:00 AM · after food</span></div><span class="pill">Taken</span></div>
-              <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💊</div><div class="meta"><b>Vitamin D3</b><span>9:00 AM · with food</span></div><span class="pill">Taken</span></div>
-              <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">💊</div><div class="meta"><b>Amlodipine</b><span>9:00 PM · bedtime</span></div><span class="pill" style="background:rgba(232,148,31,.18);color:var(--amber)">Due</span></div>
-            </div>
-            <!-- Slide 2: water -->
-            <div class="slide" data-cap="Stay hydrated through the day">
-              <div class="screen-hero" style="background:linear-gradient(135deg,#1E6FD6,#49B6F0)"><div class="t" style="color:#06223f">WATER TODAY</div><div class="big">1,400<span class="sm"> / 2,000 ml</span></div></div>
-              <div class="wglass"><div class="wfill"></div></div>
-              <div class="row"><div class="dot" style="background:rgba(46,134,222,.15)">💧</div><div class="meta"><b>+250 ml added</b><span>70% of today's goal</span></div><span class="pill">70%</span></div>
-            </div>
-            <!-- Slide 3: fasting -->
-            <div class="slide" data-cap="Fast with the right rhythm">
-              <div class="screen-hero" style="background:linear-gradient(135deg,#B5701A,#E8941F)"><div class="t" style="color:#3a2606">EKADASHI VRAT</div><div class="big">14:20<span class="sm"> / 24h</span></div></div>
-              <div class="ring"><div class="ring-in">59%</div></div>
-              <div class="row"><div class="dot" style="background:rgba(232,148,31,.15)">🌙</div><div class="meta"><b>Started 6:00 AM</b><span>Breaks tomorrow at sunrise</span></div></div>
-            </div>
-            <!-- Slide 4: scan -->
-            <div class="slide" data-cap="Scan a strip to add it">
-              <div class="scan-frame"><div class="scan-line"></div><div class="scan-strip">NICIP-P<br><small>EXP 08/2026</small></div></div>
-              <div class="row"><div class="dot" style="background:rgba(22,194,166,.15)">📷</div><div class="meta"><b>Nicip-P</b><span>Expiry: Aug 2026</span></div><span class="pill">Filled</span></div>
-            </div>
-          </div>
-        </div>
-        <div class="demo-caption">Track every dose, on time</div>
-        <div class="demo-dots"><i class="on"></i><i></i><i></i><i></i></div>
+        <video class="hero-video" autoplay loop muted playsinline preload="auto">
+          <source src="Homtory-demo.mp4" type="video/mp4">
+        </video>
       </div>
     </div>
   </div>
@@ -425,14 +404,14 @@ footer .made{margin-top:10px;font-size:12.5px;color:var(--text-muted)}
 
 <script>
 /* ---- Hero entrance (gsap.set FIRST to prevent FOUC) ---- */
-gsap.set([".hero .eyebrow", ".hero h1", ".hero .subtitle", ".hero-actions", ".trust", ".phone", ".scroll-down"], {opacity:0, y:30});
+gsap.set([".hero .eyebrow", ".hero h1", ".hero .subtitle", ".hero-actions", ".trust", ".hero-video", ".scroll-down"], {opacity:0, y:30});
 const tl = gsap.timeline({defaults:{ease:"power3.out"}});
 tl.to(".hero .eyebrow", {opacity:1,y:0,duration:.6})
   .to(".hero h1", {opacity:1,y:0,duration:.8}, "-=.3")
   .to(".hero .subtitle", {opacity:1,y:0,duration:.6}, "-=.5")
   .to(".hero-actions", {opacity:1,y:0,duration:.5}, "-=.3")
   .to(".trust", {opacity:1,y:0,duration:.5}, "-=.35")
-  .to(".phone", {opacity:1,y:0,duration:.8}, "-=.7")
+  .to(".hero-video", {opacity:1,y:0,duration:.8}, "-=.7")
   .to(".scroll-down", {opacity:1,y:0,duration:.4}, "-=.2");
 
 /* ---- Mouse parallax ---- */
@@ -441,7 +420,7 @@ hero.addEventListener("mousemove", (e)=>{
   const x=(e.clientX/window.innerWidth-.5)*2, y=(e.clientY/window.innerHeight-.5)*2;
   gsap.to(".hero-shapes-back",{x:x*45,y:y*22,duration:.8});
   gsap.to(".hero-shapes-mid",{x:x*24,y:y*12,duration:.8});
-  gsap.to(".phone",{x:x*-14,y:y*-8,rotateY:x*4,duration:.8});
+  gsap.to(".hero-video",{x:x*-14,y:y*-8,duration:.8});
 });
 
 /* ---- Scroll-triggered reveals ----
